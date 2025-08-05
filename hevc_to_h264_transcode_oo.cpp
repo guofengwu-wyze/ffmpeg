@@ -110,7 +110,7 @@ public:
             return false;
         }
         
-        std::cout << "✓ 输入文件打开成功" << std::endl;
+        std::cout << "  输入文件打开成功" << std::endl;
         return true;
     }
     
@@ -146,7 +146,7 @@ public:
             return false;
         }
         
-        std::cout << "✓ 找到视频流，索引: " << video_stream_index << std::endl;
+        std::cout << "  找到视频流，索引: " << video_stream_index << std::endl;
         std::cout << "  分辨率: " << width << "x" << height << std::endl;
         std::cout << "  编码格式: " << avcodec_get_name(input_format_ctx->streams[video_stream_index]->codecpar->codec_id) << std::endl;
         std::cout << "  帧率: " << frame_rate.num << "/" << frame_rate.den << " fps" << std::endl;
@@ -192,7 +192,7 @@ public:
             return false;
         }
         
-        std::cout << "✓ 解码器初始化成功: " << decoder->name << std::endl;
+        std::cout << "解码器初始化成功: " << decoder->name << std::endl;
         return true;
     }
     
@@ -209,7 +209,7 @@ public:
             return false;
         }
         
-        std::cout << "✓ 输出格式: " << output_format_ctx->oformat->name << std::endl;
+        std::cout << "输出格式: " << output_format_ctx->oformat->name << std::endl;
         return true;
     }
     
@@ -271,7 +271,7 @@ public:
             return false;
         }
         
-        std::cout << "✓ H.264编码器初始化成功" << std::endl;
+        std::cout << "H.264编码器初始化成功" << std::endl;
         std::cout << "  编码参数 - 分辨率: " << width << "x" << height 
                   << ", 帧率: " << frame_rate.num << "/" << frame_rate.den 
                   << ", 比特率: " << bit_rate << std::endl;
@@ -350,7 +350,7 @@ public:
             return false;
         }
         
-        std::cout << "✓ 输出文件打开成功" << std::endl;
+        std::cout << "输出文件打开成功" << std::endl;
         return true;
     }
     
@@ -381,7 +381,9 @@ public:
                         convertPixelFormat();
                     } else {
                         // 直接复制帧数据
+                        //1.复制帧数据
                         av_frame_copy(encoded_frame, decoded_frame);
+                        //2.复制帧的元数据
                         av_frame_copy_props(encoded_frame, decoded_frame);
                     }
                     
@@ -404,7 +406,7 @@ public:
             av_packet_unref(input_packet);
         }
         
-        std::cout << "✓ 转码完成，总共处理 " << frame_count << " 帧" << std::endl;
+        std::cout << "转码完成，总共处理 " << frame_count << " 帧" << std::endl;
         return true;
     }
     
@@ -488,7 +490,7 @@ public:
                 return false;
             }
             
-            std::cout << "\n🎉 转码成功完成！" << std::endl;
+            std::cout << "\n 转码成功完成！" << std::endl;
             std::cout << "输出文件: " << output_filename << std::endl;
             
             return true;
@@ -629,7 +631,7 @@ private:
             avformat_close_input(&input_format_ctx);
         }
         
-        std::cout << "✓ 资源清理完成" << std::endl;
+        std::cout << "资源清理完成" << std::endl;
     }
 };
 
